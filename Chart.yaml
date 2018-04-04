@@ -1,6 +1,6 @@
 name: metrics
 home: https://jenkins-x.github.io/jenkins-x-website/
-version: 0.0.1-SNAPSHOT
+version: 0.0.3
 description: Metrics collection and visualisation for Jenkins X
 maintainers:
 - name: Jenkins X Team
