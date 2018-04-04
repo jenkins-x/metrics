@@ -12,11 +12,14 @@ pipeline {
                 branch 'PR-*'
             }
             steps {
-                container('jx-base') {
-                    sh "helm init --client-only"
+                dir ('/home/jenkins/metrics') {
+                    checkout scm
+                    container('jx-base') {
+                        sh "helm init --client-only"
 
-                    sh "make build"
-                    sh "helm template ."
+                        sh "make build"
+                        sh "helm template ."
+                    }
                 }
             }
         }
@@ -26,10 +29,18 @@ pipeline {
                 branch 'master'
             }
             steps {
-                container('jx-base') {
-                    sh "./jx/scripts/release.sh"
+                dir ('/home/jenkins/metrics') {
+                    checkout scm
+                    container('jx-base') {
+                        sh "./jx/scripts/release.sh"
+                    }
                 }
             }
+        }
+    }
+    post {
+        always {
+            cleanWs()
         }
     }
 }
