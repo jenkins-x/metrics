@@ -5,7 +5,7 @@ description: Metrics collection and visualisation for Jenkins X
 maintainers:
 - name: Jenkins X Team
   email: jenkins-x@googlegroups.com
-icon: https://raw.githubusercontent.com/jenkins-x/metrics/master/icon/metrics.png
+icon: https://github.com/jenkins-x/metrics/master/icon/metrics.png
 sources:
 - https://github.com/jenkins-x/metrics
 - https://github.com/kubernetes/charts
