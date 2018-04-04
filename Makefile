@@ -41,5 +41,5 @@ endif
 	git tag -fa v$(RELEASE_VERSION) -m "Release version $(RELEASE_VERSION)"
 	git push origin v$(RELEASE_VERSION)
 	helm package .
-	curl --fail -u $(CHARTMUSEUM_CREDS_USR):$(CHARTMUSEUM_CREDS_PSW) --data-binary "@$(NAME)-platform-$(RELEASE_VERSION).tgz" $(CHART_REPO)/api/charts
+	curl --fail -u $(CHARTMUSEUM_CREDS_USR):$(CHARTMUSEUM_CREDS_PSW) --data-binary "@$(NAME)-$(RELEASE_VERSION).tgz" $(CHART_REPO)/api/charts
 
