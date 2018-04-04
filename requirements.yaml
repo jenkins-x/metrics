@@ -1,0 +1,15 @@
+dependencies:
+  - name: exposecontroller
+    version: 2.3.56
+    repository: http://chartmuseum.build.cd.jenkins-x.io
+    alias: expose
+  - name: exposecontroller
+    version: 2.3.56
+    repository: http://chartmuseum.build.cd.jenkins-x.io
+    alias: cleanup
+  - name: prometheus	
+    version: 4.6.17	
+    repository: https://kubernetes-charts.storage.googleapis.com	
+  - name: grafana	
+    version: 0.8.5
+    repository: https://kubernetes-charts.storage.googleapis.com
