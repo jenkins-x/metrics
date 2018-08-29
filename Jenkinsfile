@@ -1,6 +1,5 @@
 pipeline {
     environment {
-        GH_CREDS = credentials('jenkins-x-github')
         CHARTMUSEUM_CREDS = credentials('jenkins-x-chartmuseum')
     }
     agent {
@@ -32,6 +31,7 @@ pipeline {
                 dir ('/home/jenkins/metrics') {
                     checkout scm
                     container('jx-base') {
+                        sh "jx step git credentials"
                         sh "./jx/scripts/release.sh"
                     }
                 }
