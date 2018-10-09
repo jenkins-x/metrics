@@ -1,9 +1,7 @@
 pipeline {
+    agent any
     environment {
         CHARTMUSEUM_CREDS = credentials('jenkins-x-chartmuseum')
-    }
-    agent {
-        label "jenkins-jx-base"
     }
     stages {
         stage('CI Build') {
@@ -13,12 +11,10 @@ pipeline {
             steps {
                 dir ('/home/jenkins/metrics') {
                     checkout scm
-                    container('jx-base') {
-                        sh "helm init --client-only"
+                    sh "helm init --client-only"
 
-                        sh "make build"
-                        sh "helm template ."
-                    }
+                    sh "make build"
+                    sh "helm template ."
                 }
             }
         }
@@ -29,18 +25,12 @@ pipeline {
             }
             steps {
                 dir ('/home/jenkins/metrics') {
-                    checkout scm
-                    container('jx-base') {
-                        sh "jx step git credentials"
-                        sh "./jx/scripts/release.sh"
-                    }
+                    git "https://github.com/jenkins-x/metrics"
+                    
+                    sh "jx step git credentials"
+                    sh "./jx/scripts/release.sh"
                 }
             }
-        }
-    }
-    post {
-        always {
-            cleanWs()
         }
     }
 }
